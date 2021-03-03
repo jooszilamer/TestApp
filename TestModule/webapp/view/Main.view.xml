@@ -1,0 +1,17 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="ns.TestModule.controller.Main" displayBlock="true">
+	<Shell id="shell">
+		<App id="app" pages="{path:'/ProductSet',parameters:{select:'ProductID,Category,Name,Description,SupplierName,TaxTarifCode,MeasureUnit,WeightMeasure,WeightUnit,CurrencyCode,Price'}}">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content>
+					    <List noDataText="Drop list items here" id="list4">
+					        <items>
+					            <StandardListItem type="Navigation" title="{ProductID} - {Name}" description="{Description}" icon="sap-icon://picture" id="item3"/>
+					        </items>
+					    </List>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

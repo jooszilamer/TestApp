@@ -1,0 +1,56 @@
+_schema-version: "3.2"
+ID: TestApp
+version: 0.0.1
+modules:
+- name: testapp-approuter
+  type: approuter.nodejs
+  path: testapp-approuter
+  requires:
+  - name: TestApp_html_repo_runtime
+  - name: dest_TestApp
+  parameters:
+    disk-quota: 256M
+    memory: 256M
+- name: TestApp_ui_deployer
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: TestApp_html_repo_host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - TestModule-content.zip
+      name: TestModule
+      target-path: resources/
+- name: TestModule
+  type: html5
+  path: TestModule
+  build-parameters:
+    builder: custom
+    commands:
+    - npm run build
+    supported-platforms: []
+resources:
+- name: TestApp_html_repo_runtime
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-runtime
+- name: TestApp_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-host
+- name: dest_TestApp
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: destination
+    service-plan: lite
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npm install
