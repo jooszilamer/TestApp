@@ -2,7 +2,7 @@
 	<Shell id="shell">
 		<App id="app" pages="{path:'/ProductSet',parameters:{select:'ProductID,Category,Name,Description,SupplierName,TaxTarifCode,MeasureUnit,WeightMeasure,WeightUnit,CurrencyCode,Price'}}">
 			<pages>
-				<Page id="page" title="Product list">
+				<Page id="page" title="Product list updated">
 					<content>
 					    <List noDataText="Drop list items here" id="list4">
 					        <items>
